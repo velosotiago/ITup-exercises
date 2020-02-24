@@ -1,6 +1,7 @@
 function longest(s1, s2) {
   var str = s1 + s2;
   str = removeDuplicates(str);
+  str = sort(str);
   return str;
 }
 
@@ -24,27 +25,33 @@ function removeDuplicates(str) {
       }
     }
   }
-  console.log(newStr);
   return newStr;
 }
 
 function sort(str) {
   const len = str.length;
+  var swapped;
+  var charArr = [];
+  for (var i = 0; i < len; i++) {
+    charArr.push(str[i]);
+  }
+  
   do {
-    var swapped = false;
-    for (var i = 0; i < len; i++) {
-      if (str[i] > str[i + 1]) {
-        console.log(`str[i]: ${str[i]} str[i+1]: ${str[i + 1]}`);
-
-        var aux = str[i];
-        str[i] = str[i + 1];
-        str[i + 1] = aux;
+    swapped = false;
+    for (var i = 0; i < len - 1; i++) {
+      if (charArr[i] > charArr[i + 1]) {
+        var aux = charArr[i];
+        charArr[i] = charArr[i + 1];
+        charArr[i + 1] = aux;
         swapped = true;
-
-        console.log(`str[i]: ${str[i]} str[i+1]: ${str[i + 1]}`);
       }
     }
   } while (swapped);
+
+  str = "";
+  for (var i = 0; i < len; i++) {
+    str += charArr[i];
+  }
 
   return str;
 }
@@ -53,4 +60,4 @@ var a = "xyaabbbccccdefww";
 var b = "xxxxyyyyabklmopq";
 var c = "abcdefghijklmnopqrstuvwxyz";
 console.log(longest(a, b));
-//console.log(longest(c,c));
+console.log(longest(c,c));

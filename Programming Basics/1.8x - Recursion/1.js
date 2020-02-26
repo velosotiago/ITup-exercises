@@ -3,8 +3,9 @@ function gcd(a, b) {
   var max;
 
   if (a < b) {
-    min = a;
-    max = b;
+    var aux = a;
+    a = b;;
+    b = b;
   } else {
     min = b;
     max = a;

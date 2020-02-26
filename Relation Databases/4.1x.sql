@@ -73,3 +73,5 @@ WHERE Orders.OrderDate > '1996-12-31' AND
 GROUP BY Customers.CompanyName;
 
 -- l. List the number of employees and customers from each city that has employees in it.
+SELECT COUNT(Employees), COUNT(Customers)
+FROM Employees

@@ -66,10 +66,18 @@ WHERE Orders.ShippedDate > Orders.RequiredDate;
 /* k. List the total number of orders by Customer since December 31, 1996. The report
 should only return rows for which the number of orders is greater than 15. */
 select * from Orders;
-SELECT Customers.CompanyName, COUNT(*) AS 'Number of Orders'
+SELECT Customers.CompanyName, COUNT(*) AS NumOfOrders
 FROM Customers
 JOIN Orders ON Orders.CustomerID = Customers.CustomerID
-WHERE Orders.OrderDate > '1996-12-31' AND 
-GROUP BY Customers.CompanyName;
+WHERE Orders.OrderDate > '1996-12-31'
+GROUP BY Customers.CompanyName
+HAVING COUNT(*) > 15;
 
 -- l. List the number of employees and customers from each city that has employees in it.
+select * from employees;
+
+SELECT COUNT(*), City FROM Employees
+WHERE Employees.City IN (SELECT DISTINCT City FROM Employees)
+
+SELECT COUNT(*) FROM Customers
+WHERE Customers.City IN (SELECT DISTINCT City FROM Employees)

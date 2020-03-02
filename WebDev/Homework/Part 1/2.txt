@@ -1,0 +1,2 @@
+The first is a normal tag, which can hold content, 
+whereas the second is a self-closing tag and is, therefore, unable to hold content.

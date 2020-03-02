@@ -22,7 +22,7 @@ WHERE Customers.Country = 'France';
 SELECT Customers.CompanyName
 FROM Customers
 LEFT JOIN Orders ON Orders.CustomerID = Customers.CustomerID
-WHERE Customers.Country = 'France' AND OrderID IS NULL;
+WHERE Customers.Country = 'France' AND Orders.CustomerID IS NULL;
 
 /* e. List the last name of the employees that report to someone. For each of these
 employees show also the last name of the person to whom the employee reports. */
@@ -66,12 +66,16 @@ WHERE Orders.ShippedDate > Orders.RequiredDate;
 /* k. List the total number of orders by Customer since December 31, 1996. The report
 should only return rows for which the number of orders is greater than 15. */
 select * from Orders;
-SELECT Customers.CompanyName, COUNT(*) AS 'Number of Orders'
+SELECT Customers.CompanyName, COUNT(*) AS NumOfOrders
 FROM Customers
 JOIN Orders ON Orders.CustomerID = Customers.CustomerID
-WHERE Orders.OrderDate > '1996-12-31' AND 
-GROUP BY Customers.CompanyName;
+WHERE Orders.OrderDate > '1996-12-31'
+GROUP BY Customers.CompanyName
+HAVING COUNT(*) > 15;
 
 -- l. List the number of employees and customers from each city that has employees in it.
-SELECT COUNT(Employees), COUNT(Customers)
-FROM Employees
+SELECT  e.City, COUNT(DISTINCT e.EmployeeID) NumOfEmployees, COUNT(DISTINCT C.CustomerID) NumOfCustomers
+FROM Employees e
+LEFT JOIN Customers c ON e.City = c.City
+GROUP BY e.City;
+

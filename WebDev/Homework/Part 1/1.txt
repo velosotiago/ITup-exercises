@@ -1,0 +1,5 @@
+-- 1. How do you define the title in the BROWSER’s tab (which TAG and where this TAG must be
+placed in the file)?
+<head>
+  <title>My Site</title>
+</head>
